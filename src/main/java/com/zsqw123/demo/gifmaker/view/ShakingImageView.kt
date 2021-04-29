@@ -17,10 +17,6 @@ class ShakingImageView(context: Context, attrs: AttributeSet?) : View(context, a
         }
     private val random = Random(114514)
 
-//    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
-//        bitmap = context.getTestBitmap(w.coerceAtMost(h))
-//    }
-
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         val inputW = MeasureSpec.getSize(widthMeasureSpec)
         val inputH = MeasureSpec.getSize(heightMeasureSpec)

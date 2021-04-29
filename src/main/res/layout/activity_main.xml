@@ -16,6 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="48dp"
+            android:background="#FFF"
             android:minWidth="250dp"
             android:minHeight="250dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -36,6 +37,7 @@
                 android:id="@+id/tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="#FFF"
                 android:text="何言带带我 (´▽`ʃ♡ƪ)"
                 android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="@+id/iv"
@@ -89,6 +91,7 @@
             android:id="@+id/bt_import"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="4dp"
             android:text="@string/str_import"
             app:layout_constraintEnd_toEndOf="@+id/shown"
             app:layout_constraintStart_toStartOf="@+id/shown"
@@ -143,6 +146,7 @@
             android:id="@+id/seekBar_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="4dp"
             android:text="夸张程度: "
             app:layout_constraintStart_toStartOf="@+id/edit"
             app:layout_constraintTop_toBottomOf="@+id/edit" />
@@ -151,6 +155,7 @@
             android:id="@+id/group_loading"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:visibility="gone"
             app:constraint_referenced_ids="progress,progress_text" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
