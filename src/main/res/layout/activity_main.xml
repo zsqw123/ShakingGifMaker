@@ -7,33 +7,40 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center"
         tools:context=".MainActivity">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/shown"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="48dp"
-            android:orientation="vertical"
+            android:minWidth="250dp"
+            android:minHeight="250dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <com.zsqw123.demo.gifmaker.view.ShakingImageView
                 android:id="@+id/iv"
-                android:layout_gravity="center"
-                android:layout_width="280dp"
-                android:layout_height="280dp" />
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:minWidth="250dp"
+                android:minHeight="250dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <com.zsqw123.demo.gifmaker.view.ShakingTextView
                 android:id="@+id/tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="何言带带我 (´▽`ʃ♡ƪ)"
-                android:textSize="24sp" />
-        </LinearLayout>
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="@+id/iv"
+                app:layout_constraintTop_toBottomOf="@id/iv" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.zsqw123.demo.gifmaker.view.ShakingTextView
             android:id="@+id/lable_iv"
@@ -107,9 +114,9 @@
         <com.zsqw123.demo.gifmaker.view.ShakingTextView
             android:id="@+id/progress_text"
             android:layout_width="0dp"
-            android:text="❤ 何言 ❤"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
+            android:text="❤ 导出中 ❤"
             app:layout_constraintBottom_toBottomOf="@+id/progress"
             app:layout_constraintEnd_toEndOf="@+id/bt_gen"
             app:layout_constraintStart_toEndOf="@+id/progress"
@@ -125,8 +132,8 @@
         <SeekBar
             android:id="@+id/seekBar"
             android:layout_width="0dp"
-            android:progress="15"
             android:layout_height="wrap_content"
+            android:progress="15"
             app:layout_constraintBottom_toBottomOf="@+id/seekBar_label"
             app:layout_constraintEnd_toEndOf="@+id/edit"
             app:layout_constraintStart_toEndOf="@+id/seekBar_label"

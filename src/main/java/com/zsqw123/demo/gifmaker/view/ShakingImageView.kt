@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.util.AttributeSet
 import android.view.View
+import com.zsqw123.demo.gifmaker.utils.dp
 import com.zsqw123.demo.gifmaker.utils.getTestBitmap
 import kotlin.random.Random
 
@@ -16,8 +17,24 @@ class ShakingImageView(context: Context, attrs: AttributeSet?) : View(context, a
         }
     private val random = Random(114514)
 
-    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
-        bitmap = context.getTestBitmap(w.coerceAtMost(h))
+//    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
+//        bitmap = context.getTestBitmap(w.coerceAtMost(h))
+//    }
+
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        val inputW = MeasureSpec.getSize(widthMeasureSpec)
+        val inputH = MeasureSpec.getSize(heightMeasureSpec)
+        var realW = if (MeasureSpec.getMode(widthMeasureSpec) == MeasureSpec.EXACTLY) inputW else Int.MAX_VALUE
+        var realH = if (MeasureSpec.getMode(heightMeasureSpec) == MeasureSpec.EXACTLY) inputH else Int.MAX_VALUE
+        if (realH.coerceAtMost(realW) == Int.MAX_VALUE) {
+            realH = 250.dp.toInt()
+            realW = 250.dp.toInt()
+        }
+        bitmap = context.getTestBitmap(realH.coerceAtMost(realW))
+        setMeasuredDimension(
+            MeasureSpec.makeMeasureSpec(bitmap.width, MeasureSpec.EXACTLY),
+            MeasureSpec.makeMeasureSpec(bitmap.height, MeasureSpec.EXACTLY)
+        )
     }
 
     override fun onDraw(canvas: Canvas) {
