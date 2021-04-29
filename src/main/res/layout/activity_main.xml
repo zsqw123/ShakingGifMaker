@@ -7,10 +7,14 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <com.zsqw123.demo.gifmaker.view.ShakingImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp" />
+
     <com.zsqw123.demo.gifmaker.view.ShakingTextView
         android:id="@+id/bt_make"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ヾ(≧▽≦*)o顾姐姐\nヾ(≧▽≦*)o顾姐姐ヾ(≧▽≦*)o顾姐姐\nヾ(≧▽≦*)o顾姐姐ヾ(≧▽≦*)o顾姐姐ヾ(≧▽≦*)o顾姐姐ヾ(≧▽≦*)o顾姐姐ヾ(≧▽≦*)o顾姐姐ヾ(≧▽≦*)o顾姐姐"
-        android:textSize="16sp" />
+        android:text="大佬带带我 (´▽`ʃ♡ƪ)"
+        android:textSize="24sp" />
 </LinearLayout>

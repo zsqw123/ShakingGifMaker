@@ -11,12 +11,19 @@ import com.zsqw123.demo.gifmaker.utils.getDimension
 import com.zsqw123.demo.gifmaker.utils.sp
 import kotlin.random.Random
 
-class ShakingTextView(context: Context, attrs: AttributeSet) : View(context, attrs){
+class ShakingTextView(context: Context, attrs: AttributeSet) : View(context, attrs) {
     private val random = Random(1)
-    private val offset = 0.1f
+    private var offset = 0.1f
+        set(value) {
+            field = when {
+                value < 0f -> 0f
+                value > 1f -> 1f
+                else -> value
+            }
+        }
     private var mTextSize = 18.sp
 
-    var text = "❤ 何言nb ❤"
+    private var text = "❤ 何言nb ❤"
         set(value) {
             field = value
             invalidate()
@@ -43,7 +50,7 @@ class ShakingTextView(context: Context, attrs: AttributeSet) : View(context, att
         caculateSize(text, realW)
         val realH = when (MeasureSpec.getMode(heightMeasureSpec)) {
             MeasureSpec.EXACTLY -> inputH
-            else -> (textStartList.last().bottom + paint.fontMetrics.bottom - paint.fontMetrics.top)
+            else -> (textStartList.last().bottom + paint.fontMetrics.bottom)
                 .toInt().coerceAtMost(inputH)
         }
         setMeasuredDimension(
@@ -59,16 +66,16 @@ class ShakingTextView(context: Context, attrs: AttributeSet) : View(context, att
         invalidate()
     }
 
-    private fun caculateSize(str: String, w: Int) {
+    private fun caculateSize(str: String, maxW: Int) {
         textStartList.clear()
         var totalLeft = 0f
-        var totalHeight = -paint.ascent()
+        var totalHeight = -paint.fontMetrics.top
         val offsetY = totalHeight * offset
         val widths = FloatArray(str.length)
         paint.getTextWidths(str, widths)
         widths.forEachIndexed { i, it ->
             val offsetX = it * offset
-            if (totalLeft + offsetX > w || str[i] == '\n') {
+            if (totalLeft > maxW || str[i] == '\n') {
                 totalLeft = 0f
                 totalHeight += paint.fontMetrics.bottom - paint.fontMetrics.top
             }
