@@ -12,16 +12,12 @@ class ShakingImageView(context: Context, attrs: AttributeSet?) : View(context, a
     private lateinit var bitmap: Bitmap
     private var offset = 0.15f
         set(value) {
-            field = when {
-                value < 0f -> 0f
-                value > 1f -> 1f
-                else -> value
-            }
+            field = value.coerceAtMost(1f).coerceAtLeast(0f)
         }
     private val random = Random(114514)
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
-        bitmap = context.getTestBitmap(w)
+        bitmap = context.getTestBitmap(w.coerceAtMost(h))
     }
 
     override fun onDraw(canvas: Canvas) {
@@ -38,8 +34,8 @@ class ShakingImageView(context: Context, attrs: AttributeSet?) : View(context, a
         for (y in 0..yCount) for (x in 0..xCount) {
             val xOffset = (random.nextFloat() - 0.5f) * 2 * offset
             val yOffset = (random.nextFloat() - 0.5f) * 2 * offset
-            res[index++] = (x * singleW + (singleW * xOffset)).coerceAtMost(w)
-            res[index++] = (y * singleH + (singleH * yOffset)).coerceAtMost(h)
+            res[index++] = (x * singleW + (singleW * xOffset))
+            res[index++] = (y * singleH + (singleH * yOffset))
         }
         return res
     }

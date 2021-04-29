@@ -15,13 +15,9 @@ class ShakingTextView(context: Context, attrs: AttributeSet) : View(context, att
     private val random = Random(1)
     private var offset = 0.1f
         set(value) {
-            field = when {
-                value < 0f -> 0f
-                value > 1f -> 1f
-                else -> value
-            }
+            field = value.coerceAtMost(1f).coerceAtLeast(0f)
         }
-    private var mTextSize = 18.sp
+    private var mTextSize = 16.sp
 
     private var text = "❤ 何言nb ❤"
         set(value) {

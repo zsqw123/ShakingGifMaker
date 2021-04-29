@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ShakingImageView">
+        <attr name="ivOffset" format="float" />
+    </declare-styleable>
+    <declare-styleable name="ShakingTextView">
+        <attr name="tvOffset" format="float" />
+    </declare-styleable>
+</resources>

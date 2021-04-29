@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,13 +9,92 @@
     tools:context=".MainActivity">
 
     <com.zsqw123.demo.gifmaker.view.ShakingImageView
-        android:layout_width="200dp"
-        android:layout_height="200dp" />
+        android:id="@+id/iv"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.2" />
 
     <com.zsqw123.demo.gifmaker.view.ShakingTextView
-        android:id="@+id/bt_make"
+        android:id="@+id/tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="大佬带带我 (´▽`ʃ♡ƪ)"
-        android:textSize="24sp" />
-</LinearLayout>
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv" />
+
+    <com.zsqw123.demo.gifmaker.view.ShakingTextView
+        android:id="@+id/lable_iv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/use_iv"
+        app:layout_constraintBottom_toBottomOf="@+id/switch_iv"
+        app:layout_constraintStart_toStartOf="@+id/iv"
+        app:layout_constraintTop_toBottomOf="@+id/tv" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/switch_iv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/iv"
+        app:layout_constraintStart_toEndOf="@+id/lable_iv"
+        app:layout_constraintTop_toBottomOf="@+id/tv" />
+
+    <com.zsqw123.demo.gifmaker.view.ShakingTextView
+        android:id="@+id/lable_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/use_tv"
+        app:layout_constraintBottom_toBottomOf="@+id/switch_tv"
+        app:layout_constraintStart_toStartOf="@+id/lable_iv"
+        app:layout_constraintTop_toTopOf="@+id/switch_tv" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/switch_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/switch_iv"
+        app:layout_constraintStart_toEndOf="@+id/lable_tv"
+        app:layout_constraintTop_toBottomOf="@+id/switch_iv" />
+
+    <EditText
+        android:id="@+id/edit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/input_something"
+        app:layout_constraintEnd_toEndOf="@+id/switch_tv"
+        app:layout_constraintStart_toStartOf="@+id/iv"
+        app:layout_constraintTop_toBottomOf="@+id/switch_tv" />
+
+    <Button
+        android:id="@+id/bt_gen"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/gen"
+        app:layout_constraintEnd_toEndOf="@+id/bt_import"
+        app:layout_constraintStart_toStartOf="@+id/bt_import"
+        app:layout_constraintTop_toBottomOf="@+id/bt_import" />
+
+    <Button
+        android:id="@+id/bt_import"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/str_import"
+        app:layout_constraintEnd_toEndOf="@+id/iv"
+        app:layout_constraintStart_toStartOf="@+id/iv"
+        app:layout_constraintTop_toBottomOf="@+id/edit" />
+
+    <ProgressBar
+        android:id="@+id/progressing"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/bt_gen"
+        app:layout_constraintTop_toBottomOf="@+id/bt_gen" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

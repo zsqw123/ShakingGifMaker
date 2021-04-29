@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">GifMaker</string>
+    <string name="gen">GENERATE!</string>
+    <string name="use_tv">启用文字</string>
+    <string name="use_iv">启用图片</string>
+    <string name="str_import">IMPORT!</string>
+    <string name="input_something">Input Something!</string>
 </resources>
