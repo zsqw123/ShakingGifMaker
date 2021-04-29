@@ -7,16 +7,12 @@ import android.util.AttributeSet
 import android.view.View
 import com.zsqw123.demo.gifmaker.utils.dp
 import com.zsqw123.demo.gifmaker.utils.getTestBitmap
+import com.zsqw123.demo.gifmaker.utils.readCacheBitmap
 import kotlin.random.Random
 
 class ShakingImageView(context: Context, attrs: AttributeSet?) : View(context, attrs) {
     var fromImport = false
     private lateinit var bitmap: Bitmap
-
-    fun pushBitmap(b: Bitmap) {
-        bitmap = b
-        requestLayout()
-    }
 
     var offset = 0.1f
         set(value) {
@@ -33,7 +29,8 @@ class ShakingImageView(context: Context, attrs: AttributeSet?) : View(context, a
             realH = 250.dp.toInt()
             realW = 250.dp.toInt()
         }
-        if (!fromImport) bitmap = context.getTestBitmap(realH.coerceAtMost(realW))
+        bitmap = if (!fromImport) context.getTestBitmap(realH.coerceAtMost(realW))
+        else context.readCacheBitmap(realH.coerceAtMost(realW))
         setMeasuredDimension(
             MeasureSpec.makeMeasureSpec(bitmap.width, MeasureSpec.EXACTLY),
             MeasureSpec.makeMeasureSpec(bitmap.height, MeasureSpec.EXACTLY)

@@ -12,6 +12,7 @@ import com.zsqw123.demo.gifmaker.databinding.ActivityMainBinding
 import com.zsqw123.demo.gifmaker.gif.ViewGifAdapter
 import com.zsqw123.demo.gifmaker.utils.gone
 import com.zsqw123.demo.gifmaker.utils.invisable
+import com.zsqw123.demo.gifmaker.utils.save
 import com.zsqw123.demo.gifmaker.utils.visable
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -38,9 +39,9 @@ class MainActivity : AppCompatActivity() {
             }
             switchTv.setOnCheckedChangeListener { _, isChecked -> if (isChecked) tv.visable() else tv.gone() }
             seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-                override fun onStartTrackingTouch(seekBar: SeekBar?) {}
-                override fun onStopTrackingTouch(seekBar: SeekBar?) {}
-                override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                override fun onStartTrackingTouch(seekBar: SeekBar) {}
+                override fun onStopTrackingTouch(seekBar: SeekBar) {}
+                override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
                     iv.offset = progress / 100f
                     tv.offset = progress / 100f
                 }
@@ -73,9 +74,10 @@ class MainActivity : AppCompatActivity() {
             lifecycleScope.launch(Dispatchers.IO) {
                 val input = contentResolver.openInputStream(data.data!!)
                 BitmapFactory.decodeStream(input)?.let {
+                    it.save(this@MainActivity)
                     runOnUiThread {
                         binding.iv.fromImport = true
-                        binding.iv.pushBitmap(it)
+                        binding.iv.requestLayout()
                     }
                 }
                 input?.close()
