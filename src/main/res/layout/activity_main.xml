@@ -38,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="#FFF"
-                android:text="何言带带我 (´▽`ʃ♡ƪ)"
+                android:text="大佬带带我 (´▽`ʃ♡ƪ)"
                 android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="@+id/iv"
                 app:layout_constraintTop_toBottomOf="@id/iv" />

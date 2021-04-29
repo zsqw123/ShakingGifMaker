@@ -1,5 +1,8 @@
 package com.zsqw123.demo.gifmaker
 
+import android.app.Activity
+import android.content.Intent
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
@@ -10,14 +13,16 @@ import com.zsqw123.demo.gifmaker.gif.ViewGifAdapter
 import com.zsqw123.demo.gifmaker.utils.gone
 import com.zsqw123.demo.gifmaker.utils.invisable
 import com.zsqw123.demo.gifmaker.utils.visable
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.io.File
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.apply {
             edit.doAfterTextChanged { tv.text = it.toString() }
@@ -52,6 +57,33 @@ class MainActivity : AppCompatActivity() {
                     runOnUiThread { progressText.text = "❤ 导出完成 ❤" }
                 }
             }
+            btImport.setOnClickListener {
+                startActivityForResult(Intent(Intent.ACTION_PICK).apply {
+                    type = "image/*"
+                    putExtra(Intent.EXTRA_MIME_TYPES, arrayOf("image/jpeg", "image/png"))
+                }, SELECT_PICTURE)
+            }
         }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode != Activity.RESULT_OK || data?.data == null) return
+        if (requestCode == SELECT_PICTURE) {
+            lifecycleScope.launch(Dispatchers.IO) {
+                val input = contentResolver.openInputStream(data.data!!)
+                BitmapFactory.decodeStream(input)?.let {
+                    runOnUiThread {
+                        binding.iv.fromImport = true
+                        binding.iv.pushBitmap(it)
+                    }
+                }
+                input?.close()
+            }
+        }
+    }
+
+    companion object {
+        const val SELECT_PICTURE = 1
     }
 }

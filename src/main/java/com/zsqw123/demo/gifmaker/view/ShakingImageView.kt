@@ -10,7 +10,14 @@ import com.zsqw123.demo.gifmaker.utils.getTestBitmap
 import kotlin.random.Random
 
 class ShakingImageView(context: Context, attrs: AttributeSet?) : View(context, attrs) {
+    var fromImport = false
     private lateinit var bitmap: Bitmap
+
+    fun pushBitmap(b: Bitmap) {
+        bitmap = b
+        requestLayout()
+    }
+
     var offset = 0.1f
         set(value) {
             field = value.coerceAtMost(1f).coerceAtLeast(0f)
@@ -26,7 +33,7 @@ class ShakingImageView(context: Context, attrs: AttributeSet?) : View(context, a
             realH = 250.dp.toInt()
             realW = 250.dp.toInt()
         }
-        bitmap = context.getTestBitmap(realH.coerceAtMost(realW))
+        if (!fromImport) bitmap = context.getTestBitmap(realH.coerceAtMost(realW))
         setMeasuredDimension(
             MeasureSpec.makeMeasureSpec(bitmap.width, MeasureSpec.EXACTLY),
             MeasureSpec.makeMeasureSpec(bitmap.height, MeasureSpec.EXACTLY)
