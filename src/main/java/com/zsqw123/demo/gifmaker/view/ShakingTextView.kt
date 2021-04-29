@@ -13,16 +13,18 @@ import kotlin.random.Random
 
 class ShakingTextView(context: Context, attrs: AttributeSet) : View(context, attrs) {
     private val random = Random(1)
-    private var offset = 0.1f
+    var offset = 0.1f
         set(value) {
             field = value.coerceAtMost(1f).coerceAtLeast(0f)
+            requestLayout()
         }
     private var mTextSize = 16.sp
 
-    private var text = "❤ 何言nb ❤"
+    var text = "❤ 何言nb ❤"
         set(value) {
+            if (value.isEmpty()) return
             field = value
-            invalidate()
+            requestLayout()
         }
 
     private val textStartList = ArrayList<RectF>()

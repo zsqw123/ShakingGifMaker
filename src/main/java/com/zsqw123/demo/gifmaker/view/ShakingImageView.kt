@@ -10,7 +10,7 @@ import kotlin.random.Random
 
 class ShakingImageView(context: Context, attrs: AttributeSet?) : View(context, attrs) {
     private lateinit var bitmap: Bitmap
-    private var offset = 0.15f
+    var offset = 0.1f
         set(value) {
             field = value.coerceAtMost(1f).coerceAtLeast(0f)
         }

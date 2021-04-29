@@ -1,100 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
 
-    <com.zsqw123.demo.gifmaker.view.ShakingImageView
-        android:id="@+id/iv"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.2" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        tools:context=".MainActivity">
 
-    <com.zsqw123.demo.gifmaker.view.ShakingTextView
-        android:id="@+id/tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="大佬带带我 (´▽`ʃ♡ƪ)"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv" />
+        <LinearLayout
+            android:id="@+id/shown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    <com.zsqw123.demo.gifmaker.view.ShakingTextView
-        android:id="@+id/lable_iv"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/use_iv"
-        app:layout_constraintBottom_toBottomOf="@+id/switch_iv"
-        app:layout_constraintStart_toStartOf="@+id/iv"
-        app:layout_constraintTop_toBottomOf="@+id/tv" />
+            <com.zsqw123.demo.gifmaker.view.ShakingImageView
+                android:id="@+id/iv"
+                android:layout_gravity="center"
+                android:layout_width="280dp"
+                android:layout_height="280dp" />
 
-    <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/switch_iv"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="@+id/iv"
-        app:layout_constraintStart_toEndOf="@+id/lable_iv"
-        app:layout_constraintTop_toBottomOf="@+id/tv" />
+            <com.zsqw123.demo.gifmaker.view.ShakingTextView
+                android:id="@+id/tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="何言带带我 (´▽`ʃ♡ƪ)"
+                android:textSize="24sp" />
+        </LinearLayout>
 
-    <com.zsqw123.demo.gifmaker.view.ShakingTextView
-        android:id="@+id/lable_tv"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/use_tv"
-        app:layout_constraintBottom_toBottomOf="@+id/switch_tv"
-        app:layout_constraintStart_toStartOf="@+id/lable_iv"
-        app:layout_constraintTop_toTopOf="@+id/switch_tv" />
+        <com.zsqw123.demo.gifmaker.view.ShakingTextView
+            android:id="@+id/lable_iv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/use_iv"
+            app:layout_constraintBottom_toBottomOf="@+id/switch_iv"
+            app:layout_constraintStart_toStartOf="@+id/shown"
+            app:layout_constraintTop_toTopOf="@+id/switch_iv" />
 
-    <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/switch_tv"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="@+id/switch_iv"
-        app:layout_constraintStart_toEndOf="@+id/lable_tv"
-        app:layout_constraintTop_toBottomOf="@+id/switch_iv" />
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switch_iv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            app:layout_constraintStart_toEndOf="@+id/lable_iv"
+            app:layout_constraintTop_toBottomOf="@+id/shown" />
 
-    <EditText
-        android:id="@+id/edit"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="@string/input_something"
-        app:layout_constraintEnd_toEndOf="@+id/switch_tv"
-        app:layout_constraintStart_toStartOf="@+id/iv"
-        app:layout_constraintTop_toBottomOf="@+id/switch_tv" />
+        <com.zsqw123.demo.gifmaker.view.ShakingTextView
+            android:id="@+id/lable_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/use_tv"
+            app:layout_constraintBottom_toBottomOf="@+id/switch_tv"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="@+id/switch_tv" />
 
-    <Button
-        android:id="@+id/bt_gen"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/gen"
-        app:layout_constraintEnd_toEndOf="@+id/bt_import"
-        app:layout_constraintStart_toStartOf="@+id/bt_import"
-        app:layout_constraintTop_toBottomOf="@+id/bt_import" />
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switch_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            app:layout_constraintStart_toEndOf="@+id/lable_tv"
+            app:layout_constraintTop_toBottomOf="@+id/shown" />
 
-    <Button
-        android:id="@+id/bt_import"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/str_import"
-        app:layout_constraintEnd_toEndOf="@+id/iv"
-        app:layout_constraintStart_toStartOf="@+id/iv"
-        app:layout_constraintTop_toBottomOf="@+id/edit" />
+        <EditText
+            android:id="@+id/edit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/input_something"
+            app:layout_constraintEnd_toEndOf="@+id/shown"
+            app:layout_constraintStart_toStartOf="@+id/shown"
+            app:layout_constraintTop_toBottomOf="@+id/switch_tv" />
 
-    <ProgressBar
-        android:id="@+id/progressing"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@+id/bt_gen"
-        app:layout_constraintTop_toBottomOf="@+id/bt_gen" />
+        <Button
+            android:id="@+id/bt_import"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/str_import"
+            app:layout_constraintEnd_toEndOf="@+id/shown"
+            app:layout_constraintStart_toStartOf="@+id/shown"
+            app:layout_constraintTop_toBottomOf="@+id/seekBar" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/bt_gen"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/gen"
+            app:layout_constraintEnd_toEndOf="@+id/bt_import"
+            app:layout_constraintStart_toStartOf="@+id/bt_import"
+            app:layout_constraintTop_toBottomOf="@+id/bt_import" />
+
+        <ProgressBar
+            android:id="@+id/progress"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@+id/bt_gen"
+            app:layout_constraintTop_toBottomOf="@+id/bt_gen" />
+
+        <com.zsqw123.demo.gifmaker.view.ShakingTextView
+            android:id="@+id/progress_text"
+            android:layout_width="0dp"
+            android:text="❤ 何言 ❤"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            app:layout_constraintBottom_toBottomOf="@+id/progress"
+            app:layout_constraintEnd_toEndOf="@+id/bt_gen"
+            app:layout_constraintStart_toEndOf="@+id/progress"
+            app:layout_constraintTop_toBottomOf="@+id/bt_gen" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <SeekBar
+            android:id="@+id/seekBar"
+            android:layout_width="0dp"
+            android:progress="15"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/seekBar_label"
+            app:layout_constraintEnd_toEndOf="@+id/edit"
+            app:layout_constraintStart_toEndOf="@+id/seekBar_label"
+            app:layout_constraintTop_toTopOf="@+id/seekBar_label" />
+
+        <com.zsqw123.demo.gifmaker.view.ShakingTextView
+            android:id="@+id/seekBar_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="夸张程度: "
+            app:layout_constraintStart_toStartOf="@+id/edit"
+            app:layout_constraintTop_toBottomOf="@+id/edit" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group_loading"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:constraint_referenced_ids="progress,progress_text" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
