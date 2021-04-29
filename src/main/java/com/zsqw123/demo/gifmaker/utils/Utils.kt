@@ -1,19 +1,19 @@
 package com.zsqw123.demo.gifmaker.utils
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.Rect
-import android.graphics.drawable.Drawable
 import android.view.View
 import androidx.annotation.DrawableRes
+import androidx.core.content.FileProvider
 import com.zsqw123.demo.gifmaker.R
 import com.zsqw123.demo.gifmaker.app
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.File
-import java.io.InputStream
 
 fun getBitmap(resources: Resources, size: Int, @DrawableRes id: Int): Bitmap {
     val options = BitmapFactory.Options().apply {
@@ -74,4 +74,11 @@ suspend fun Bitmap.save(context: Context) {
     withContext(Dispatchers.IO) {
         Bitmap.createBitmap(this@save, l, t, size, size).compress(Bitmap.CompressFormat.JPEG, 100, file.outputStream())
     }
+}
+
+fun Activity.shareGif(file: File) {
+    val shareIntent = Intent(Intent.ACTION_SEND)
+    shareIntent.type = "image/gif"
+    shareIntent.putExtra(Intent.EXTRA_STREAM, FileProvider.getUriForFile(this, "$packageName.provider", file))
+    startActivity(shareIntent)
 }

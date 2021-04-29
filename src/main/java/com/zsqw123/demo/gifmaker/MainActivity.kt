@@ -10,10 +10,7 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.lifecycleScope
 import com.zsqw123.demo.gifmaker.databinding.ActivityMainBinding
 import com.zsqw123.demo.gifmaker.gif.ViewGifAdapter
-import com.zsqw123.demo.gifmaker.utils.gone
-import com.zsqw123.demo.gifmaker.utils.invisable
-import com.zsqw123.demo.gifmaker.utils.save
-import com.zsqw123.demo.gifmaker.utils.visable
+import com.zsqw123.demo.gifmaker.utils.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -47,15 +44,19 @@ class MainActivity : AppCompatActivity() {
                 }
             })
             btGen.setOnClickListener {
-                val outFile = File(filesDir, "share.gif")
+                val outFile = File(cacheDir, System.currentTimeMillis().toString())
                 if (outFile.exists()) outFile.delete()
                 lifecycleScope.launch {
                     runOnUiThread { groupLoading.visable() }
-                    ViewGifAdapter(outFile, 24, if (picFlag) shown else tv).generate(5) {
+                    ViewGifAdapter(outFile, 48, if (picFlag) shown else tv).generate(8) {
                         runOnUiThread { progressText.text = String.format("❤ 导出中 %d ❤", it) }
                     }
                     delay(200)
-                    runOnUiThread { progressText.text = "❤ 导出完成 ❤" }
+                    runOnUiThread {
+                        progressText.text = "❤ 导出完成 ❤"
+                        progress.invisable()
+                    }
+                    shareGif(outFile)
                 }
             }
             btImport.setOnClickListener {
