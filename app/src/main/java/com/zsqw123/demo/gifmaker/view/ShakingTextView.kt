@@ -18,7 +18,11 @@ class ShakingTextView(context: Context, attrs: AttributeSet) : View(context, att
             field = value.coerceAtMost(1f).coerceAtLeast(0f)
             requestLayout()
         }
-    private var mTextSize = 16.sp
+    private var textSize = 16.sp
+        set(value) {
+            field = value
+            paint.textSize = value
+        }
 
     var text = "❤ 何言nb ❤"
         set(value) {
@@ -31,8 +35,7 @@ class ShakingTextView(context: Context, attrs: AttributeSet) : View(context, att
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG)
 
     init {
-        mTextSize = context.getDimension(attrs, android.R.attr.textSize, 18.sp)
-        paint.textSize = mTextSize
+        textSize = context.getDimension(attrs, android.R.attr.textSize, 18.sp)
         context.obtainStyledAttributes(attrs, intArrayOf(android.R.attr.text)).use {
             it.getString(0)?.let { s -> text = s }
         }

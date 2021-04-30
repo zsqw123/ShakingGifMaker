@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.lifecycleScope
 import com.zsqw123.demo.gifmaker.databinding.ActivityMainBinding
-import com.zsqw123.demo.gifmaker.gif.ViewGifAdapter
+import com.zsqw123.demo.gifmaker.gif.GifAdapter
 import com.zsqw123.demo.gifmaker.utils.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
                 if (outFile.exists()) outFile.delete()
                 lifecycleScope.launch {
                     runOnUiThread { groupLoading.visable() }
-                    ViewGifAdapter(outFile, 48, if (picFlag) shown else tv).generate(8) {
+                    GifAdapter(outFile, 48).viewToGif(if (picFlag) shown else tv, 8) {
                         runOnUiThread { progressText.text = String.format("❤ 导出中 %d ❤", it) }
                     }
                     delay(200)

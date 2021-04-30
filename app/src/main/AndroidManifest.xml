@@ -26,5 +26,4 @@
                 android:resource="@xml/public_file" />
         </provider>
     </application>
-
 </manifest>
